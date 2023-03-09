@@ -7,7 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hi there, your BMI is: {{bmi}}</h1>
-    <h2> Your are {{level}}</h2>
+    <h1>lIST OF BMI's:</h1>
+    <ul class="people_list">
+  {{#each bmi}}
+    <li>{{this}}</li>
+  {{/each}}
+</ul>
+<h1>average bmi: {{avg}}</h1>
+<h2>The average bmi level is: {{level}}</h2>
 </body>
 </html>

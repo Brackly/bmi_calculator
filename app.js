@@ -9,6 +9,16 @@ app.set('views', 'views');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '../public'));
 
+const cal_bmi=(bmi)=>{
+    if (bmi < 18.6) {
+        return 'UnderWeight'
+    }else if (bmi >= 18.6 && bmi < 24.9){
+        return "Normal"
+    }else{
+        return "Overweight"
+    }
+}
+
 app.get('/',(req,res)=>{
     res.render('home', {name:'John Doe'})
 });
@@ -32,9 +42,20 @@ app.post('/bmi',urlEncodedParser,(req,res)=>{
     const reports = JSON.parse(fs.readFileSync('reports.json'));
     reports.push(bmi);
     fs.writeFileSync('reports.json', JSON.stringify(reports));
-
-    
-    res.render('results', {bmi:bmi})
+    const level=cal_bmi(bmi) 
+    res.render('results', {bmi:bmi,level:level})
 });
+
+app.get('/reports',(req,res)=>{
+    const reports = JSON.parse(fs.readFileSync('reports.json'));
+    let sum=0
+    reports.forEach(element => {
+        sum+=element;
+    });
+    const avg=sum/reports.length;
+    console.log(avg)
+    const level=cal_bmi(avg)
+    res.render('reports',{bmi:reports,avg:avg,level:level})
+})
 
 app.listen(port);
