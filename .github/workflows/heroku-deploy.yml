@@ -22,7 +22,7 @@ jobs:
       with:
         render-token: ${{secrets.RENDER_API_KEY}}
         githuub-token: ${{secrets.ACC_API_KEY}}
-        service-id: "srv-cg9"
+        service-id: "srv-cgcnn2vdvk4htnonk47g"
         retries: 20
         wait: 16000
         sleep: 30000
