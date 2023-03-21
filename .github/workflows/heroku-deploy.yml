@@ -18,7 +18,7 @@ jobs:
         webhook_url: ${{secrets.DEPLOY_HOOK_URL}}
         webhook_secret: ${{secret.DEPLOY_HOOK_KEY}}
         
-    - uses: bounceapp/render-actions@0.6.0
+    - uses: bounceapp/render-action@0.6.0
       with:
         render-token: ${{secrets.RENDER_API_KEY}}
         githuub-token: ${{secrets.ACC_API_KEY}}
