@@ -4,20 +4,12 @@ const port= process.env.PORT||3000;
 const bodyparser= require('body-parser');
 const urlEncodedParser=bodyparser.urlencoded({extended:false})
 const fs = require('fs');
-
+const {cal_bmi} = require('./bmi')
 app.set('views', 'views');
 app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '../public'));
 
-const cal_bmi=(bmi)=>{
-    if (bmi < 18.6) {
-        return 'UnderWeight'
-    }else if (bmi >= 18.6 && bmi < 24.9){
-        return "Normal"
-    }else{
-        return "Overweight"
-    }
-}
+
 
 app.get('/',(req,res)=>{
     res.render('home', {name:'John Doe'})
